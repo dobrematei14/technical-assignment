@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.data_processing_view, name='data_list'), # URL for the data list view
+    path('', views.data_list, name='data_list'), # URL for the data list view
 ]

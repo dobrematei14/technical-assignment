@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>hello world</title>
+    <title>Data Processing Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .summary {
+            background: #f5f5f5;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .grade-box {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .grade-A { background: #d4edda; }
+        .grade-B { background: #d1ecf1; }
+        .grade-C { background: #fff3cd; }
+        .grade-D { background: #ffe5d0; }
+        .grade-F { background: #f8d7da; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th { background: #f2f2f2; }
+    </style>
 </head>
 <body>
-    <h1>hello world</h1>
+    <h1>Data Processing Results</h1>
+
+    <div class="summary">
+        <h2>Summary</h2>
+        <p>Total items: {{ total_count }}</p>
+        <div>
+            <div class="grade-box grade-A">A: {{ grade_counts.A }}</div>
+            <div class="grade-box grade-B">B: {{ grade_counts.B }}</div>
+            <div class="grade-box grade-C">C: {{ grade_counts.C }}</div>
+            <div class="grade-box grade-D">D: {{ grade_counts.D }}</div>
+            <div class="grade-box grade-F">F: {{ grade_counts.F }}</div>
+        </div>
+    </div>
+
+    {% if entries %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>URL</th>
+            <th>DateTime</th>
+            <th>Category</th>
+            <th>Grade</th>
+        </tr>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.id|truncatechars:8 }}</td>
+            <td>{{ entry.url|truncatechars:30 }}</td>
+            <td>{{ entry.datetime }}</td>
+            <td>{{ entry.category|default:"-" }}</td>
+            <td>{{ entry.grade }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No data processed yet.</p>
+    {% endif %}
 </body>
 </html>

@@ -2,8 +2,8 @@ import logging
 
 from django.core.management.base import BaseCommand
 
-from technical_assignment.data_processing.services.data_parser import XMLParser, JSONParser
-from technical_assignment.data_processing.services.data_processor import DataProcessor
+from data_processing.services.data_parser import XMLParser, JSONParser
+from data_processing.services.data_processor import DataProcessor
 
 logging.basicConfig(
     level=logging.INFO,
